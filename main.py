@@ -48,7 +48,7 @@ url_main = init.url_main
 url_Target = init.url_main + username + '/'
 
 # 取得資料Post
-result = getinfo.main(browser, url_Target, islogin, database_name, username)
+# result = getinfo.main(browser, url_Target, islogin, database_name, username)
 # user_id=267920419
 # cursor='QVFBeGtwREpmNEgzZnVrOHB4LTlVa0xmM2NEbW1paGdaT3c5SEE2XzV1TVJxOFl2ckFmcXFiTDl2dGxZODVxVlZybG5mNHdESWx5bmFsb2F1OGpEMlFJQg=='
 # uri_page2 = init.uri_query.format(user_id=user_id, cursor=cursor)
@@ -66,26 +66,26 @@ result = getinfo.main(browser, url_Target, islogin, database_name, username)
 
 
 # 輪詢更新 get user info + 限時
-# browser.implicitly_wait(5)
-# users_list = database.getTablename(database_name)
-# for i in users_list:
-#     print(i[0]+"...", end='')
-#     user_name = i[0]
-#     url_main = init.url_main
-#     url_Target = init.url_main + user_name + '/'
-#     # getindex.main(islogin, browser, url_Target)
-#     try:
-#         getindex.main(islogin, browser, url_Target)
-#         time.sleep(1)
-#         try:
-#             print(user_name +"get stories...",end="")
-#             getstroies.main(browser, user_name, islogin)
-#             print("OVER!!")
-#         except:
-#             print("FAIL!!")
-#
-#     except:
-#         print(i[0] + "is fail")
+browser.implicitly_wait(5)
+users_list = database.getTablename(database_name)
+for i in users_list:
+    print(i[0]+"...", end='')
+    user_name = i[0]
+    url_main = init.url_main
+    url_Target = init.url_main + user_name + '/'
+    # getindex.main(islogin, browser, url_Target)
+    try:
+        getindex.main(islogin, browser, url_Target)
+        time.sleep(1)
+        try:
+            print(user_name +"get stories...",end="")
+            getstroies.main(browser, user_name, islogin)
+            print("OVER!!")
+        except:
+            print("FAIL!!")
+
+    except:
+        print(i[0] + "is fail")
 
 
 
