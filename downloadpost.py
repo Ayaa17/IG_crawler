@@ -25,7 +25,9 @@ def main(islogin, browser, database_name, username):
     sql_query = "SELECT * FROM '{Table_name}' WHERE ( is_download ='False' ) "
     sql_query = sql_query.format(Table_name=username)
     result = cursor.execute(sql_query).fetchall()
-
+    if (len(result) < 1):
+        print("All post is download: len(result):" + str(len(result)))
+        return
     cursor.close()
     con.close()
     file_loc_str = './media/'
@@ -138,8 +140,8 @@ def save_media(shortcode_media, file_loc_str, file_name, database_name, _Table_n
             media_link = edges['video_url']
             print(media_link)
             file_type = '.mp4'
-            if(media_link=='https://static.cdninstagram.com/rsrc.php/null.jpg'):
-                print('Fail in this video:'+_Table_name+', file_name: '+file_name)
+            if (media_link == 'https://static.cdninstagram.com/rsrc.php/null.jpg'):
+                print('Fail in this video:' + _Table_name + ', file_name: ' + file_name)
                 return
         else:
             media_link = edges['display_resources'][-1]['src']

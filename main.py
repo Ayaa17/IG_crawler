@@ -13,11 +13,10 @@ import database
 import downloadpost
 import getindex
 import getinfo
-
-# 首頁
 import getstroies
 import init
 
+"""# 首頁"""
 
 print("Enter account: ")
 account = input()
@@ -26,28 +25,28 @@ password = input()
 # account
 # password
 
-
 url_main = 'https://www.instagram.com/'
 browser = webdriver.Chrome()
 browser.get(url_main)
 
 # 等待100s 以讀取網頁
 browser.implicitly_wait(100)
-# 登入
-islogin = True
 
+"""# 登入"""
+islogin = True
 elem_user = browser.find_element_by_name("username").send_keys(account)
 elem_password = browser.find_element_by_name("password").send_keys(password)
 elem_submit = browser.find_element_by_class_name('sqdOP.L3NKy.y3zKF').click()
 time.sleep(10)
 
-database_name = 'Instagram.db'
-# 取得資料/目標網址
-# username = '''mamamoo_official'''
-# url_main = init.url_main
-# url_Target = init.url_main + username + '/'
 
-# 取得資料Post
+"""# 取得資料/目標網址"""
+database_name = 'Instagram.db'
+username = '''95_mizuki'''
+url_main = init.url_main
+url_Target = init.url_main + username + '/'
+
+"""# 取得資料Post"""
 # result = getinfo.main(browser, url_Target, islogin, database_name, username)
 # user_id=267920419
 # cursor='QVFBeGtwREpmNEgzZnVrOHB4LTlVa0xmM2NEbW1paGdaT3c5SEE2XzV1TVJxOFl2ckFmcXFiTDl2dGxZODVxVlZybG5mNHdESWx5bmFsb2F1OGpEMlFJQg=='
@@ -55,42 +54,75 @@ database_name = 'Instagram.db'
 # result = getinfo.main_continue(browser, uri_page2, islogin,cursor, user_id, database_name,username)
 # print("DB all over")
 
-# 下載Post
+"""# 下載Post"""
 # downloadpost.main(islogin, browser, database_name, username)
 
-# 限時動態
+"""# 限時動態"""
 # getstroies.main(browser, username, islogin)
 
-# 更新POST LIST
+"""# 更新POST LIST"""
 # getinfo.refresh(browser, url_Target, islogin, database_name, username)
 
 
-# 輪詢更新 get user info + 限時
-browser.implicitly_wait(5)
-users_list = database.getTablename(database_name)
-for i in users_list:
-    print(i[0]+"...", end='')
-    user_name = i[0]
-    url_main = init.url_main
-    url_Target = init.url_main + user_name + '/'
-    # getindex.main(islogin, browser, url_Target)
-    try:
-        getindex.main(islogin, browser, url_Target)
-        time.sleep(1)
-        try:
-            print(user_name +"get stories...",end="")
-            getstroies.main(browser, user_name, islogin)
-            print("OVER!!")
-        except:
-            print("FAIL!!")
+"""
+輪詢更新 get user info + 限時+貼文
+"""
 
-    except:
-        print(i[0] + "is fail")
+# browser.implicitly_wait(5)
+# users_list = database.getTablename(database_name)
+# for i in users_list:
+#     print(i[0]+"...", end='')
+#     user_name = i[0]
+#     url_main = init.url_main
+#     url_Target = init.url_main + user_name + '/'
+#
+#     try:
+#         getindex.main(islogin, browser, url_Target)
+#         time.sleep(1)
+#         try:
+#             print(user_name +"get stories...",end="")
+#             getstroies.main(browser, user_name, islogin)
+#             print("OVER!!")
+#         except:
+# #            print("FAIL!!")
+#
+#         try:
+#             print(user_name + "get Post...", end="")
+#             downloadpost.main(islogin, browser, database_name, username)
+#             print("OVER!!")
+#         except:
+#             print("FAIL!!")
+#
+#     except:
+#         print(i[0] + "is fail")
+
+
+"""# 輪詢更新 get user info + 限時"""
+# browser.implicitly_wait(5)
+# users_list = database.getTablename(database_name)
+# for i in users_list:
+#     print(i[0]+"...", end='')
+#     user_name = i[0]
+#     url_main = init.url_main
+#     url_Target = init.url_main + user_name + '/'
+#     # getindex.main(islogin, browser, url_Target)
+#     try:
+#         getindex.main(islogin, browser, url_Target)
+#         time.sleep(1)
+#         try:
+#             print(user_name +"get stories...",end="")
+#             getstroies.main(browser, user_name, islogin)
+#             print("OVER!!")
+#         except:
+#             print("FAIL!!")
+#
+#     except:
+#         print(i[0] + "is fail")
 
 
 
 
-# 輪詢更新POST LIST
+"""# 輪詢更新POST LIST"""
 # users_list = database.getTablename(database_name)
 # for i in users_list:
 #     print(i[0] + "...", end='')
