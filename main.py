@@ -43,9 +43,9 @@ time.sleep(10)
 
 database_name = 'Instagram.db'
 # 取得資料/目標網址
-username = '''mamamoo_official'''
-url_main = init.url_main
-url_Target = init.url_main + username + '/'
+# username = '''mamamoo_official'''
+# url_main = init.url_main
+# url_Target = init.url_main + username + '/'
 
 # 取得資料Post
 # result = getinfo.main(browser, url_Target, islogin, database_name, username)
